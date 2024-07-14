@@ -1,0 +1,16 @@
+services:
+  StableDiffusion:
+    container_name: 'nvidia_base'
+    image: 'ericlacasse/automatic1111_stable_diffusion_webui:base'
+    tty: true
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./stable-diffusion-webui:/home/stablediffusion/stable-diffusion-webui
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
